@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
+// es6语法规范，通过import * as actions，便可以直接使用actions.XXX直接获取里面的exportg后的值，以免多次利用{}
 import state from './state'
 import mutations from './mutations'
-// es6语法规范，通过import * as actions，便可以直接使用actions.XXX直接获取里面的exportg后的值，以免多次利用{}
 import createLogger from 'vuex/dist/logger'
 // 每次修改 mutations 时会在 console 打印出修改记录
 

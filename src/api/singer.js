@@ -34,26 +34,3 @@ export function getSingerDetail(singerId) {
   })
   return jsonp(url, data, options)
 }
-
-export function getSongUrl(songmid) {
-  const url = '/api/getSongUrl'
-
-  const data = Object.assign({}, commonParams, {
-    g_tk: 1819168215,
-    platform: 'yqq',
-    loginUin: 0,
-    hostUin: 0,
-    needNewCode: 0,
-    cid: 205361747,
-    songmid: songmid,
-    uin: 0,
-    filename: `C400${songmid}.m4a`,
-    guid: 2926598324
-  })
-
-  return axios.get(url, {
-    params: data
-  }).then((res) => {
-    return Promise.resolve(res.data)
-  })
-}

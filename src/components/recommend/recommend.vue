@@ -1,4 +1,5 @@
 <template>
+  <transition name="recommend">
   <div class="recommend">
     <scroll ref="scroll" class="recommend-content">
       <div>
@@ -31,6 +32,7 @@
       <loading></loading>
     </div>
   </div>
+  </transition>
 </template>
 
 <script>
@@ -86,6 +88,10 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/common/stylus/variable'
 
+.recommend-enter-active, .recommend-leave-active
+  transition opacity .5s
+.recommend-enter, .recommend-leave-to
+  opacity 0
 .recommend
   position fixed
   width 100%
