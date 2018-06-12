@@ -7,7 +7,8 @@ const state = {
   playList: [],
   sequenceList: [],
   mode: playMode.sequence,// 默认顺序播放
-  currentIndex: -1
+  currentIndex: -1,
+  disc: {}
 }
 
 export default state
