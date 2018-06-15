@@ -1,7 +1,7 @@
 <!-- Editor:xuyuchen -->
 <template>
-  <div class="rank" :data="ranks">
-    <scroll class="toplist">
+  <div class="rank" ref="rank" :data="ranks">
+    <scroll class="toplist" ref="topList">
       <ul>
         <li class="item" v-for="rank in ranks" @click="selectItem(rank)">
           <div class="icon">
@@ -15,7 +15,7 @@
           </ul>
         </li>
       </ul>
-      <div class="loading-container" v-if="ranks.length === 0">
+      <div class="loading-container" v-show="!ranks.length">
         <loading></loading>
       </div>
     </scroll>
@@ -29,8 +29,10 @@ import { ERR_OK } from '@/api/config'
 import Scroll from '@/base/scroll/scroll'
 import Loading from '@/base/loading/loading'
 import { mapMutations } from 'vuex'
+import { playlistMixin } from '@/common/js/mixin'
 
 export default {
+  mixins: [playlistMixin],
   data() {
     return {
       ranks: []
@@ -41,16 +43,21 @@ export default {
     Loading
   },
   methods: {
-    getRankList() {
+    handlePlayList(playList) {
+      const bottom = playList.length ? '60px' : ''
+      this.$refs.rank.style.bottom = bottom
+      this.$refs.topList.refresh() 
+    },
+    selectItem(rank) {
+      this.$router.push(`/rank/${rank.id}`)
+      this.setRank(rank)
+    },
+    _getRankList() {
       getRankList().then((res) => {
         if (ERR_OK === res.code) {
           this.ranks = res.data.topList
         }
       })
-    },
-    selectItem(rank) {
-      this.$router.push(`/rank/${rank.id}`)
-      this.setRank(rank)
     },
     ...mapMutations({
       setRank: 'SET_RANK'
@@ -58,7 +65,7 @@ export default {
   },
   created() {
     setTimeout(() => {
-      this.getRankList()
+      this._getRankList()
     }, 500);
   }
 }

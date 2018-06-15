@@ -1,6 +1,5 @@
 import jsonp from '@/common/js/jsonp'
-import { commonParams } from '@/api/config'
-import { options } from '@/api/config';
+import { commonParams, options } from '@/api/config'
 
 export function getRankList() {
   const url = 'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg'

@@ -2,7 +2,7 @@
 <template>
   <transition name="slide">
     <div class="top-list">
-      <music-list :title="title" :bgImage="bgImage" :songs="songs"></music-list>
+      <music-list :title="title" :bg-image="bgImage" :songs="songs"></music-list>
     </div>
   </transition>
 </template>
@@ -28,7 +28,10 @@ export default {
       return this.rank.topTitle
     },
     bgImage() {
-      return this.rank.picUrl
+      if (this.songs.length) {
+        return this.songs[0].image
+      }
+      return ''
     },
     ...mapGetters([
       'rank'
@@ -53,7 +56,6 @@ export default {
           ret.push(createSong(musicData.data))
         }
       })
-      console.log(ret)
       return ret
     }
   },

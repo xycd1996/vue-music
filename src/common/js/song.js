@@ -1,8 +1,6 @@
 import { getLyric } from '@/api/song'
 import { ERR_OK } from '@/api/config'
 import { Base64 } from 'js-base64'
-import { runInThisContext } from 'vm';
-import { reject } from 'when';
 
 export default class Song {// 构造一个Song类
   constructor({ id, mid, singer, name, album, duration, image, url }) {
